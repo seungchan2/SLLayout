@@ -46,6 +46,32 @@ self.button.lay
     .width(.equal(100))
     .height(.equal(100))
 ```
+```swift
+let firstView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .yellow
+    return view
+}()
+    
+let secondView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .blue
+    return view
+}()
+
+firstView.lay
+         .addSubView(self.view)
+         .center(.superview)
+         .width(.equal(100))
+         .height(.equal(100))
+        
+secondView.lay
+          .addSubView(self.firstView)
+          .centerX(.to(self.firstView).centerX)
+          .centerY(.to(self.firstView).centerY)
+          .width(.equal(50))
+          .height(.equal(50))
+```
 ## More information
 you can use `leading` `trailing` `top` `leading` `bottom` `centerX` `centerY` `width` `height`
 
