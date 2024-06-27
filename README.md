@@ -18,7 +18,7 @@ First, install **SLLayout** via [Swift Package Manager](https://swift.org/packag
 
 > Xcode 11+ is required to build SnapKit using Swift Package Manager.
 
-To integrate `ChanLog` into your Xcode project using Swift Package Manager, add it to the dependencies value of your `Package.swift`
+To integrate `SLLayout` into your Xcode project using Swift Package Manager, add it to the dependencies value of your `Package.swift`
 
 ```swift
 dependencies: [
