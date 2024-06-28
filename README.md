@@ -39,6 +39,11 @@ self.label.lay
     .addSubView(self.view)
     .center(.superview)
 
+self.label.lay
+    .addSubView(self.view)
+    .leading(.superView).inset(10)
+    .trailing(.superView).inset(10)
+
 self.button.lay
     .addSubView(self.view)
     .centerX(.to(self.label).leading)
@@ -79,5 +84,14 @@ secondView.lay
           .size(50)
 ```
 ## More information
-you can use `leading` `trailing` `top` `leading` `bottom` `centerX` `centerY` `width` `height` `size`
+#### xAxis
+`leading` `trailing` `centerX`
+#### yAxis
+`top` `bottom` `centerY` 
+#### xAxix & yAxis
+`center`
+#### size 
+`width` `height` `size` 
+#### constant
+`inset`
 
