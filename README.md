@@ -43,8 +43,8 @@ self.button.lay
     .addSubView(self.view)
     .centerX(.to(self.label).leading)
     .centerY(.to(self.label).centerY)
-    .width(.equal(100))
-    .height(.equal(100))
+    .width(100)
+    .height(100)
 ```
 ```swift
 let firstView: UIView = {
@@ -59,19 +59,25 @@ let secondView: UIView = {
     return view
 }()
 
+// width, height
 firstView.lay
          .addSubView(self.view)
          .center(.superview)
-         .width(.equal(100))
-         .height(.equal(100))
+         .width(100)
+         .height(100)
+
+// size
+firstView.lay
+         .addSubView(self.view)
+         .center(.superview)
+         .size(100)
         
 secondView.lay
           .addSubView(self.firstView)
           .centerX(.to(self.firstView).centerX)
           .centerY(.to(self.firstView).centerY)
-          .width(.equal(50))
-          .height(.equal(50))
+          .size(50)
 ```
 ## More information
-you can use `leading` `trailing` `top` `leading` `bottom` `centerX` `centerY` `width` `height`
+you can use `leading` `trailing` `top` `leading` `bottom` `centerX` `centerY` `width` `height` `size`
 
