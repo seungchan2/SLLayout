@@ -23,11 +23,14 @@ public protocol LayoutConfigurable {
     func centerY(_ relation: LayoutRelation) -> LayoutConfigurable
     
     @discardableResult
-    func width(_ type: LayoutConstraintType) -> LayoutConfigurable
-    
-    @discardableResult
-    func height(_ type: LayoutConstraintType) -> LayoutConfigurable
-    
-    @discardableResult
     func center(_ relation: LayoutRelation) -> LayoutConfigurable
+    
+    @discardableResult
+    func width(_ constant: CGFloat) -> LayoutConfigurable
+    
+    @discardableResult
+    func height(_ constant: CGFloat) -> LayoutConfigurable
+    
+    @discardableResult
+    func size(_ constant: CGFloat) -> LayoutConfigurable
 }

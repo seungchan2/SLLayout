@@ -62,15 +62,20 @@ public final class LayoutProxy: LayoutConfigurable {
     }
 
     @discardableResult
-    public func width(_ type: LayoutConstraintType) -> LayoutConfigurable {
-        applyDimensionConstraint(attribute: .width, type: type)
+    public func width(_ constant: CGFloat) -> LayoutConfigurable {
+        applyDimensionConstraint(attribute: .width, constant: constant)
         return self
     }
 
     @discardableResult
-    public func height(_ type: LayoutConstraintType) -> LayoutConfigurable {
-        applyDimensionConstraint(attribute: .height, type: type)
+    public func height(_ constant: CGFloat) -> LayoutConfigurable {
+        applyDimensionConstraint(attribute: .height, constant: constant)
         return self
+    }
+    
+    @discardableResult
+    public func size(_ constant: CGFloat) -> LayoutConfigurable {
+        return self.width(constant).height(constant)
     }
 
     @discardableResult

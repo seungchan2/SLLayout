@@ -70,7 +70,7 @@ extension LayoutProxy {
         }
     }
     
-    internal func applyDimensionConstraint(attribute: NSLayoutConstraint.Attribute, type: LayoutConstraintType) {
+    internal func applyDimensionConstraint(attribute: NSLayoutConstraint.Attribute, constant: CGFloat) {
         let anchor: NSLayoutDimension
         switch attribute {
         case .width:
@@ -81,20 +81,9 @@ extension LayoutProxy {
             return
         }
         
-        switch type {
-        case .equal(let constant):
-            NSLayoutConstraint.activate([
-                anchor.constraint(equalToConstant: constant)
-            ])
-        case .greaterThanOrEqual(let constant):
-            NSLayoutConstraint.activate([
-                anchor.constraint(greaterThanOrEqualToConstant: constant)
-            ])
-        case .lessThanOrEqual(let constant):
-            NSLayoutConstraint.activate([
-                anchor.constraint(lessThanOrEqualToConstant: constant)
-            ])
-        }
+        NSLayoutConstraint.activate([
+            anchor.constraint(equalToConstant: constant)
+        ])
     }
     
     internal func xAxisAnchor(for attribute: NSLayoutConstraint.Attribute, in view: UIView) -> NSLayoutAnchor<NSLayoutXAxisAnchor>? {
