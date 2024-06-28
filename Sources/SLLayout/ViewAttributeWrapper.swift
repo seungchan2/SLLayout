@@ -7,6 +7,7 @@ public struct ViewAttributeWrapper {
         self.view = view
     }
     
+    /// xAxis
     public var leading: LayoutRelation {
         return .viewAttribute(view, .leading)
     }
@@ -15,6 +16,11 @@ public struct ViewAttributeWrapper {
         return .viewAttribute(view, .trailing)
     }
     
+    public var centerX: LayoutRelation {
+        return .viewAttribute(view, .centerX)
+    }
+    
+    /// yAxis
     public var top: LayoutRelation {
         return .viewAttribute(view, .top)
     }
@@ -23,14 +29,11 @@ public struct ViewAttributeWrapper {
         return .viewAttribute(view, .bottom)
     }
     
-    public var centerX: LayoutRelation {
-        return .viewAttribute(view, .centerX)
-    }
-    
     public var centerY: LayoutRelation {
         return .viewAttribute(view, .centerY)
     }
     
+    /// size
     public var width: LayoutRelation {
         return .viewAttribute(view, .width)
     }

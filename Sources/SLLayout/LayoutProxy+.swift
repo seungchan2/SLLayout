@@ -2,6 +2,7 @@ import UIKit
 
 extension LayoutProxy {
         
+    /// xAxis - LayoutConstraintType
     internal func applyXAxisConstraint(_ relation: LayoutRelation,
                               attribute: NSLayoutConstraint.Attribute,
                               type: LayoutConstraintType) {
@@ -36,6 +37,7 @@ extension LayoutProxy {
         }
     }
     
+    /// yAxis - LayoutConstraintType
     internal func applyYAxisConstraint(_ relation: LayoutRelation,
                                       attribute: NSLayoutConstraint.Attribute,
                                       type: LayoutConstraintType) {
@@ -70,6 +72,77 @@ extension LayoutProxy {
         }
     }
     
+    /// LayoutConstraintType - constant for inset
+    internal func applyConstraint(_ relation: LayoutRelation,
+                                  attribute: NSLayoutConstraint.Attribute,
+                                  constant: CGFloat) {
+        switch attribute {
+        case .leading, .trailing:
+            applyXAxisConstraint(relation, attribute: attribute, constant: constant)
+        case .top, .bottom:
+            applyYAxisConstraint(relation, attribute: attribute, constant: constant)
+        default:
+            fatalError("Invalid attribute for applying constraint.")
+        }
+    }
+    
+    /// xAxis - constant
+    internal func applyXAxisConstraint(_ relation: LayoutRelation,
+                                       attribute: NSLayoutConstraint.Attribute, 
+                                       constant: CGFloat) {
+        let targetAnchor: NSLayoutAnchor<NSLayoutXAxisAnchor>
+        switch relation {
+        case .superview:
+            guard let superview = self.view.superview else {
+                fatalError("Superview must be set before adding constraints")
+            }
+            if attribute == .leading {
+                targetAnchor = superview.leadingAnchor
+            } else {
+                targetAnchor = superview.trailingAnchor
+            }
+        case .viewAttribute(let relatedView, _):
+            if attribute == .leading {
+                targetAnchor = relatedView.leadingAnchor
+            } else {
+                targetAnchor = relatedView.trailingAnchor
+            }
+        }
+        
+        let anchor = (attribute == .leading) ? self.view.leadingAnchor : self.view.trailingAnchor
+        NSLayoutConstraint.activate([
+            anchor.constraint(equalTo: targetAnchor, constant: constant)
+        ])
+    }
+    
+    /// yAxis - constant
+    internal func applyYAxisConstraint(_ relation: LayoutRelation, attribute: NSLayoutConstraint.Attribute, constant: CGFloat) {
+        let targetAnchor: NSLayoutAnchor<NSLayoutYAxisAnchor>
+        switch relation {
+        case .superview:
+            guard let superview = self.view.superview else {
+                fatalError("Superview must be set before adding constraints")
+            }
+            if attribute == .top {
+                targetAnchor = superview.topAnchor
+            } else {
+                targetAnchor = superview.bottomAnchor
+            }
+        case .viewAttribute(let relatedView, _):
+            if attribute == .top {
+                targetAnchor = relatedView.topAnchor
+            } else {
+                targetAnchor = relatedView.bottomAnchor
+            }
+        }
+        
+        let anchor = (attribute == .top) ? self.view.topAnchor : self.view.bottomAnchor
+        NSLayoutConstraint.activate([
+            anchor.constraint(equalTo: targetAnchor, constant: constant)
+        ])
+    }
+    
+    /// size - constant
     internal func applyDimensionConstraint(attribute: NSLayoutConstraint.Attribute, constant: CGFloat) {
         let anchor: NSLayoutDimension
         switch attribute {
